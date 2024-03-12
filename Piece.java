@@ -44,7 +44,7 @@ public final class Piece {
     {
         // initialize next to null; it will be initialized in the pieceRow method
         this.next = null;
-        
+        this.body= new Point[points.length];
         // TODO: copy the points array and copy the Point elements in the array
         //  Note: this.body = points copies the reference to the array referenced by points;
         //      it does not create a new array of references to Point objects
@@ -54,7 +54,11 @@ public final class Piece {
         
         
         // TODO: initialize the width instance variable with the width of the piece
-        
+        for (int i = 0; i < points.length; i++)
+        {
+            Point newPoint = new Point(points[i]);
+            this.body[i] = new Point();
+        }
         // TODO: initialize the height instance variable with the height of the piece
         
         // TODO: initialize the skirt instance variable
