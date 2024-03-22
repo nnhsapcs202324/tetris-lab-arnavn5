@@ -82,29 +82,29 @@ public class ClickListener implements ActionListener
     this.bestMove = brain.bestMove(this.board, this.pieces[pieceNum], limitHeight);
     return this.pieces[pieceNum];
 }
-@Override public void tick(int v)
-{
-    if(isBrainEnabled)
-    {
-        if(this.currentX < bestMove.getX())
-        {
+@Override
+public void tick(int verb) {
+    if (isBrainEnabled) {
+        if (this.currentX < bestMove.getX()) {
             super.tick(RIGHT);
-        }
-            else if(this.currentX > bestMove.getX())
-            {
+        } else if (this.currentX > bestMove.getX()) {
             super.tick(LEFT);
-            }
-        if(!this.currentPiece.nextRotation().equals(bestMove.getPiece().nextRotation()))
-        {
+        }
+        if (!this.currentPiece.nextRotation().equals(bestMove.getPiece().nextRotation())) {
             super.tick(ROTATE);
         }
-        if (this.currentPiece.nextRotation().equals(bestMove.getPiece().nextRotation()) && this.currentX == bestMove.getX())
-        {
+        if (this.currentPiece.nextRotation().equals(bestMove.getPiece().nextRotation()) && this.currentX == bestMove.getX()) {
             super.tick(DROP);
-            super.tick(v); 
+            super.tick(verb);
         }
-        super.tick(v);
+    }
+        // Execute default behavior when brain is disabled
+        super.tick(verb);
     }
 }
 
-}
+
+
+
+
+
