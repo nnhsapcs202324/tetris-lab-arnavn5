@@ -24,7 +24,7 @@ public class TetrisViewer
         container.setLayout(new BorderLayout());
             
         final int PIXELS = 16;
-        JTetris tetris = new JTetris((JTetris.WIDTH * PIXELS) + 2,
+        JTetris tetris = new JBrainTetris((JTetris.WIDTH * PIXELS) + 2,
                 (JTetris.HEIGHT + JTetris.TOP_SPACE) * (PIXELS + 2));
         
         
