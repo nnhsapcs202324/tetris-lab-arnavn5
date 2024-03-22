@@ -28,39 +28,38 @@ public class JBrainTetris extends JTetris
     
     @Override
     public Container createControlPanel() {
-    Container panel = super.createControlPanel();
+    Container pan = super.createControlPanel();
     ClickListener listener = new ClickListener();
     
-    JComboBox<Brain> cb = new JComboBox<>();
-    ArrayList<Brain> brainsList = BrainFactory.createBrains();
-    Brain[] brains = new Brain[brainsList.size()];
+    JComboBox<Brain> comboBox1 = new JComboBox<>();
+    ArrayList<Brain> list = BrainFactory.createBrains();
+    Brain[] brains = new Brain[list.size()];
     for (int i = 0; i < brains.length; i++) {
-        brains[i] = brainsList.get(i);
+        brains[i] = list.get(i);
     }
-    cb = new JComboBox<>(brains);
+    comboBox1 = new JComboBox<>(brains);
     brain = new SimpleBrain();
-    cb.addActionListener(listener); // Corrected method name
-    panel.add(cb);
+    pan.add(comboBox1);
     
-    enableBrain = new JButton("Enable Brain"); // No need for "this"
-    panel.add(enableBrain);
+    enableBrain = new JButton("Enable Brain");
+    pan.add(enableBrain);
     enableBrain.addActionListener(listener);
     
-    return panel;
+    return pan;
 }
 public class ComboBox implements ActionListener
 {
-    public void actionPerformed(ActionEvent e)
+    public void actionPerformed(ActionEvent a)
     {
-        JComboBox cb = (JComboBox)e.getSource();
-        brain = (Brain)cb.getSelectedItem();
+        JComboBox comboBox2 = (JComboBox)a.getSource();
+        brain = (Brain)comboBox2.getSelectedItem();
     }
 }
 public class ClickListener implements ActionListener
 {
-    public void actionPerformed(ActionEvent e)
+    public void actionPerformed(ActionEvent a)
     {
-        if(e.getSource() == enableBrain)
+        if(a.getSource() == enableBrain)
         {
             count ++;
             if(count % 2 != 0)
@@ -77,10 +76,10 @@ public class ClickListener implements ActionListener
 }
 @Override public Piece pickNextPiece()
 {
-    int pieceNum = (int)(this.pieces.length * this.random.nextDouble());
-    int limitHeight = HEIGHT + TOP_SPACE;
-    this.bestMove = brain.bestMove(this.board, this.pieces[pieceNum], limitHeight);
-    return this.pieces[pieceNum];
+    int pieceNumber = (int)(this.pieces.length * this.random.nextDouble());
+    int height = HEIGHT + TOP_SPACE;
+    this.bestMove = brain.bestMove(this.board, this.pieces[pieceNumber], height);
+    return this.pieces[pieceNumber];
 }
 @Override
 public void tick(int verb) {
